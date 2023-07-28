@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import morgan from "morgan";
+import './connect';
 
 dotenv.config();
 const app: Express = express();

@@ -5,7 +5,16 @@ import './connect';
 import cors from "cors";
 
 dotenv.config();
+
+
+const sequelize = require("./connect");
+const User = require("./src/models/user.model");
+
+sequelize.sync({force:true})
+
 const app: Express = express();
+
+app.use(morgan('combined'));
 const corsOptions = {
     origin: 'http://localhost:8080'
 }
@@ -13,8 +22,6 @@ const corsOptions = {
 app.get('/', (req: Request, res: Response) => {
     res.send('Express + TypeScript Server');
 });
-
-app.use(morgan('combined'));
 
 app.use(cors(corsOptions));
 

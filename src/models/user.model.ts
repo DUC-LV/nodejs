@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../../connect";
+const sequelize = require('../../connect');
 
 const User = sequelize.define('User', {
     email: {
@@ -20,7 +20,6 @@ const User = sequelize.define('User', {
     }
 },{
     freezeTableName: true,
-    modelName: 'User'
 })
 
 module.exports = User;

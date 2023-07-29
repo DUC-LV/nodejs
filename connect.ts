@@ -19,4 +19,4 @@ const connect = async () => {
 
 connect();
 
-export default sequelize;
+module.exports = sequelize;

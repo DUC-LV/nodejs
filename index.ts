@@ -14,7 +14,7 @@ require("./src/models/user.model");
 
 sequelize.sync({force:true})
 
-const register = require("./src/controllers/register.controller");
+const api = require('./src/controllers');
 
 const app: Express = express();
 
@@ -33,8 +33,7 @@ app.use(express.json());
 
 app.use(cors(corsOptions));
 
-// register
-app.post("/register", register);
+app.use(api);
 
 
 app.listen(process.env.PORT || 8080, () => {

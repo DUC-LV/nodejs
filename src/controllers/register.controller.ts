@@ -1,11 +1,16 @@
-import { Response, Request } from "express";
+import express, { Response, Request } from "express";
 
 const User = require("../models/user.model");
+const router = express.Router();
 
-async function register(req: Request, res: Response) {
+router.post('/register', async function (req: Request, res: Response) {
     try {
         const { email, password, name } = req.body;
-        const alreadyExistsUser = await User.findOne({ where: { email }});
+        const alreadyExistsUser = await User.findOne({ where: { email }}, function(error: any){
+            if(error){
+                res.status(500).json({ error: "Not User" });
+            }
+        });
 
         if(alreadyExistsUser){
             return res.json({
@@ -14,6 +19,21 @@ async function register(req: Request, res: Response) {
                 "data": null,
             })
         }
+
+        // User.create({
+        //     email: email,
+        //     password: password,
+        //     name: name
+        // }).then(() => {
+        //     return res.json({
+        //         "errorCode": 200,
+        //         "message": "Thanks for registering",
+        //         "data": null,
+        //     })
+        // }).catch((error: any) => {
+        //     console.log(error);
+        //     res.status(500).json({ error: "Cannot register user at the moment!" });
+        // })
 
         const newUser = new User({ email, password, name });
         const saveUser = await newUser.save(function(error: any){
@@ -33,7 +53,6 @@ async function register(req: Request, res: Response) {
         console.log(error);
         res.status(500).send("Not Found");
     }
-}
+});
 
-
-module.exports = register;
+module.exports = router;

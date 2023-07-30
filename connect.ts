@@ -18,3 +18,5 @@ const connect = async () => {
 }
 
 connect();
+
+module.exports = sequelize;

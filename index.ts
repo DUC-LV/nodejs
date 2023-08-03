@@ -8,8 +8,12 @@ import bodyParser from "body-parser";
 
 dotenv.config();
 
+const sequelize = require("./connect");
+sequelize.sync({force:false})
+
 
 require("./src/models/user.model");
+require("./src/models/topicPlaylist.model");
 
 const api = require('./src/controllers');
 

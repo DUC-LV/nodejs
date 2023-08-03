@@ -9,10 +9,7 @@ import bodyParser from "body-parser";
 dotenv.config();
 
 
-const sequelize = require("./connect");
 require("./src/models/user.model");
-
-sequelize.sync({force:true})
 
 const api = require('./src/controllers');
 

@@ -24,7 +24,7 @@ router.post('/update/topic-playlist',async function (req: Request, res: Response
         const newTopicPlaylist = new TopicPlaylist({ title });
         const saveTopicPlaylist = await newTopicPlaylist.save(function(error: any){
             if(error){
-                res.status(500).json({ error: "Cannot register user at the moment!" });
+                res.status(500).json({ error: "Cannot update topic playlist at the moment!" });
             }
         });
 

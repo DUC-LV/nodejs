@@ -14,6 +14,7 @@ sequelize.sync({force:false})
 
 require("./src/models/user.model");
 require("./src/models/topicPlaylist.model");
+require("./src/models/playlist.model");
 
 const api = require('./src/controllers');
 
